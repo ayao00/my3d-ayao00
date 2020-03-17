@@ -1,0 +1,65 @@
+color
+168 16 5
+box
+0 0 0 200 100 300
+ident
+rotate
+x 20
+rotate
+y -20
+move
+100 150 0
+apply
+display
+clear
+box
+0 0 0 200 100 200
+ident
+rotate
+x 50
+rotate
+y 20
+move
+225 300 0
+apply
+display
+clear
+color
+105 102 100
+torus
+0 0 0 5 50
+move
+-250 -250 0
+rotate
+x 30
+rotate
+y 20
+move
+250 130 0
+apply
+display
+clear
+color
+65 195 209
+sphere
+0 0 0 10
+move
+-10 50 0
+apply
+display
+clear
+sphere
+0 0 0 3
+move
+-15 -7 0
+apply
+display
+clear
+sphere
+0 0 0 3
+move
+30 4 0
+apply
+display
+save
+ring.png

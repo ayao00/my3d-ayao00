@@ -83,9 +83,7 @@ struct matrix * generate_sphere(double cx, double cy, double cz,
                                 double r, int step ) {
   struct matrix * spherepoints = new_matrix(4, step+1);
   double x,y,z,rot, cir;
-  printf("here before\n");
     for(rot = 0; rot <= 1; rot += 1.0/step){
-      printf("here %lf", rot);
       for(cir = 0; cir <= 1; cir += 1.0/step){
         x = r * cos(M_PI * cir) + cx;
         y = r * sin(M_PI * cir) * cos(2 * M_PI * rot) + cy;
@@ -93,7 +91,6 @@ struct matrix * generate_sphere(double cx, double cy, double cz,
         add_point(spherepoints, x,y,z);
       }
     }
-    printf("here at the end\n");
   return spherepoints;
 }
 
@@ -139,21 +136,18 @@ void add_torus( struct matrix * edges,
   ====================*/
 struct matrix * generate_torus( double cx, double cy, double cz,
                                 double r1, double r2, int step ) {
-  struct matrix * spherepoints = new_matrix(4, step+1);
+  struct matrix * toruspoints = new_matrix(4, step+1);
   double x,y,z,rot, cir;
-  printf("here before\n");
   for(rot = 0; rot <= 2; rot += 1.0/step){
-    printf("here %lf", rot);
     for(cir = 0; cir <= 2; cir += 1.0/step){
       x = cos(M_PI * rot) * (r1 * cos(M_PI * cir) + r2) + cx;
       y = r1 * -1 * sin(M_PI * cir) + cy;
       z = -1 * sin(M_PI * rot) * (r1 * cos(M_PI * cir)+ r2) + cz;
-      add_point(spherepoints, x,y,z);
+      add_point(toruspoints, x,y,z);
     }
   }
-  printf("here at the end\n");
-  return spherepoints;
-  return NULL;
+  return toruspoints;
+
 }
 
 /*======== void add_circle() ==========

@@ -200,7 +200,7 @@ void parse_file ( char * filename,
 
     else if ( strncmp(line, "display", strlen(line)) == 0 ) {
       //printf("DISPLAY\t%s", line);
-      clear_screen(s);
+      //clear_screen(s);
       draw_lines(edges, s, c);
       display( s );
     }//end display
@@ -209,14 +209,13 @@ void parse_file ( char * filename,
       //printf("SAVE\t%s", line);
       fgets(line, sizeof(line), f);
       *strchr(line, '\n') = 0;
-      //printf("name: %s\n", line);
+      printf("name: %s\n", line);
       clear_screen(s);
       draw_lines(edges, s, c);
       save_extension(s, line);
     }//end save
     else if( strncmp(line, "box", strlen(line)) == 0 ) {
       fgets(line, sizeof(line), f);
-      printf("name: %s\n", line);
       sscanf(line, "%lf %lf %lf %lf %lf %lf",
              xvals, yvals, zvals,
              width, height, depth);
@@ -224,10 +223,8 @@ void parse_file ( char * filename,
     }
     else if( strncmp(line, "sphere", strlen(line)) == 0 ) {
       fgets(line, sizeof(line), f);
-      printf("name: %s\n", line);
       sscanf(line, "%lf %lf %lf %lf",
              xvals, yvals, zvals, rad);
-      printf("here\n");
       add_sphere(edges,xvals[0],yvals[0],zvals[0],rad[0],100);
     }
     else if( strncmp(line, "clear", strlen(line)) == 0 ) {
@@ -235,11 +232,20 @@ void parse_file ( char * filename,
     }
     else if( strncmp(line, "torus", strlen(line)) == 0 ) {
       fgets(line, sizeof(line), f);
-      printf("name: %s\n", line);
       sscanf(line, "%lf %lf %lf %lf %lf",
              xvals, yvals, zvals, rad, rad2);
-      printf("here\n");
       add_torus(edges,xvals[0],yvals[0],zvals[0],rad[0],rad2[0],100);
+    }
+    else if( strncmp(line, "color", strlen(line)) == 0 ) {
+      fgets(line, sizeof(line), f);
+      sscanf(line, "%lf %lf %lf",
+             xvals, yvals, zvals);
+      c.red = xvals[0];
+      c.green = yvals[0];
+      c.blue = zvals[0];
+    }
+    else if( strncmp(line, "clearscreen", strlen(line)) == 0 ) {
+      clear_screen(s);
     }
   }
 }
